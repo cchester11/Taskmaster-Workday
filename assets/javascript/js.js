@@ -1,28 +1,43 @@
-  var task = [];
+  var task = Array(9).fill('');
 
-  var textAreaTotal = [6];
+  function createTask() {
+    var createLi = $('<li>').addClass('timeblock');
+    var createTextArea = $('<textarea>').addClass('description');
+    var getTextArea = $('#text-area');
 
-  for(i = 0; i < textAreaTotal.length; i++) {
-        function makeTask(){
-        var createTask = document.createElement('textarea')
-        var getUl = document.querySelector('#textarea')
-        getUl.appendChild(createTask)
-        }
+    createLi.append(createTextArea)
+    getTextArea.append(createLi);
+  }
 
-        
-        function saveTask(){
-        localStorage.setItem('task', JSON.stringify(task));
-        };
+  function iterateTask() {
+    $('.row').each(function(index){
+      $(this).children('#text-area').val(task[index])
+    //compare moment().hours() to .text-area's id (1pm will equual 13)
+    //if statement add class to change color
+    //parse from string to number 
+    })
+  }
 
-        function addTask(){
-          document.getElementById('1').addEventListener("click", function() {
-            makeTask()
-            saveTasks() 
-            })
-        }
+  function loadTask() {
+    task = JSON.parse(localStorage.getItem('task'))
+    iterateTask();
+  }
 
-        while (textAreaTotal <= 6) {
-          addTask();
-        }
-    }
+  function saveTask() {
+    localStorage.setItem('task', JSON.stringify(task))
+  }
+
+  function addTask() {
+  $('#container .saveBtn').click(function() {
+    console.log($(this).siblings('textarea').val())
+    var index = $(this).attr('id')-1
+    task[index] = $(this).siblings('textarea').val()
+
+    createTask()
+    saveTask();
+  })
+  }
+
+  loadTask();
+  addTask();
 
