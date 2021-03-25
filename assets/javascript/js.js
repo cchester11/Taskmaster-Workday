@@ -43,7 +43,7 @@ function iterateTask() {
   $('.row').each(function (index) {
     $(this).children('#text-area').val(task[index])
   })
-  //compare moment().hours() to .text-area's id (1pm will equual 13)
+  //compare moment().hours() to .text-area's id (1pm will equal 13)
   //if statement add class to change color
   //parse from string to number 
   var timeIndex = $('.row').each(function () {
