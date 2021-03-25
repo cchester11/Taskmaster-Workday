@@ -21,6 +21,24 @@
     getTextArea.append(createLi);
   };
 
+  function iterateTime() {
+    var currentTime = moment().hours();
+
+    $('.hour').each(function(){
+      let varTime = parseInt($(this).attr('id'));
+
+      if(varTime < currentTime) {
+        $(this).addClass('past')
+      } else if(varTime === currentTime) {
+        $(this).removeClass('past')
+        $(this).addClass('present')
+      } else if(varTime > currentTime) {
+        $(this).removeClass('present')
+        $(this).addClass('future')
+      }
+    })
+  };
+
   function iterateTask() {
     $('.row').each(function(index) {
       $(this).children('#text-area').val(task[index])
@@ -34,25 +52,7 @@
     });
     console.log(timeIndex);
 
-    var iterateTime = function() {
-      var currentTime = moment().hours();
-
-      $('#hour').each(function(){
-        let varTime = parseInt($(this).attr('id'));
-
-        if(varTime < currentTime) {
-          $(this).addClass('past')
-        } else if(varTime === currentTime) {
-          $(this).removeClass('past')
-          $(this).addClass('present')
-        } else if(varTime > currentTime) {
-          $(this).removeClass('present')
-          $(this).addClass('future')
-        }
-      })
-    }
-
-  iterateTime();
+    iterateTime();
 };
 
   function loadTask() {
