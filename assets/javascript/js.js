@@ -1,5 +1,17 @@
   var task = Array(9).fill('');
 
+  const timeVar = moment().format('dddd, MMMM Do YYYY, h:mm:ss a');
+  var getCurrentDay = document.querySelector('#currentDay');
+
+  getCurrentDay.innerHTML = timeVar;
+
+  setInterval(function currentTime() {
+    var selectP = document.querySelector('#currentDay');
+    var momentTime = moment().format('dddd, MMMM Do YYYY, h:mm:ss a');
+
+    selectP.innerHTML = momentTime;
+  }, 1000);
+
   function createTask() {
     var createLi = $('<li>').addClass('timeblock');
     var createTextArea = $('<textarea>').addClass('description');
@@ -7,25 +19,36 @@
 
     createLi.append(createTextArea)
     getTextArea.append(createLi);
-  }
+  };
 
   function iterateTask() {
-    $('.row').each(function(index){
+    $('.row').each(function(index) {
       $(this).children('#text-area').val(task[index])
+    })
     //compare moment().hours() to .text-area's id (1pm will equual 13)
     //if statement add class to change color
     //parse from string to number 
-    })
-  }
+    var timeIndex = $('.row').each(function(){
+      $(this).children('#text-area') 
+    .index()
+    });
+    console.log(timeIndex);
+
+    if (timeIndex < task[5]) {
+      $(timeIndex).querySelector('#text-area').addClass('past');
+    }
+;  };
 
   function loadTask() {
+    //turns JSON back into javascript
     task = JSON.parse(localStorage.getItem('task'))
     iterateTask();
-  }
+  };
 
   function saveTask() {
+    //saves our data as JSON. We will use the loadTask() to pull the data and revert it to javascript
     localStorage.setItem('task', JSON.stringify(task))
-  }
+  };
 
   function addTask() {
   $('#container .saveBtn').click(function() {
@@ -36,8 +59,7 @@
     createTask()
     saveTask();
   })
-  }
+  };
 
   loadTask();
   addTask();
-
