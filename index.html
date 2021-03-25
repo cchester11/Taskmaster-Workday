@@ -18,11 +18,13 @@
 </head>
 
 <body>
-  <header class="jumbotron">
-    <h1 class="display-3">Work Day Scheduler</h1>
-    <p id="intro" class="description lead">A simple calendar app for scheduling your work day</p>
-    <p id="currentDay" class="lead"></p>
-  </header>
+  <div class="container-fluid">
+    <header class="jumbotron d-flex flex-column">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p id="intro" class="description lead">A simple calendar for scheduling your day</p>
+      <p id="currentDay" class="lead"></p>
+    </header>
+  </div>
   <div id="container" class="container-fluid">
     <main id="list-container" class="col my-5 d-flex flex-column">
       <div class="row mb-5" id="0">
@@ -113,5 +115,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/javascript/js.js"></script>
 </body>
-
+<footer>
+</footer>
 </html>

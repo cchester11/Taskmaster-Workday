@@ -34,10 +34,26 @@
     });
     console.log(timeIndex);
 
-    if (timeIndex < task[5]) {
-      $(timeIndex).querySelector('#text-area').addClass('past');
+    var iterateTime = function() {
+      var currentTime = moment().hours();
+
+      $('#hour').each(function(){
+        let varTime = parseInt($(this).attr('id'));
+
+        if(varTime < currentTime) {
+          $(this).addClass('past')
+        } else if(varTime === currentTime) {
+          $(this).removeClass('past')
+          $(this).addClass('present')
+        } else if(varTime > currentTime) {
+          $(this).removeClass('present')
+          $(this).addClass('future')
+        }
+      })
     }
-;  };
+
+  iterateTime();
+};
 
   function loadTask() {
     //turns JSON back into javascript
